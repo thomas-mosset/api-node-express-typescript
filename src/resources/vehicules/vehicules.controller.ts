@@ -10,9 +10,19 @@ const service = new VehiculesService();
 
 // Tous les vehicules
 VehiculesController.get('/', (req, res) => {
-    return res.
-    status(200) // tout est ok
+    return res
+    .status(200) // tout est ok
     .json(service.findAll()); // trouve et parse au format json toutes les données
+});
+
+
+// Création d'un véhicule
+VehiculesController.post('/', (req, res) => {
+    const createdVehicule = service.create(req.body);
+
+    return res
+    .status(201) // created
+    .json(createdVehicule);
 });
 
 

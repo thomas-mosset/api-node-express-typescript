@@ -12,4 +12,17 @@ export class VehiculesService {
     findAll(): Vehicule[] {
         return this.vehicules;
     };
+
+    // Création d'un véhicule
+    create(vehiculeData: Omit<Vehicule, 'id'>): Vehicule {
+
+        const newVehicule: Vehicule = {
+            ...vehiculeData,
+            id: this.vehicules.length + Math.floor(Math.random() * 100) // permet de créer aléatoirement un id factice (/!\ Mauvaise pratique lorsqu'il y a une vraie BDD /!\)
+        }
+
+        this.vehicules.push(newVehicule);
+
+        return newVehicule;
+    }
 }
