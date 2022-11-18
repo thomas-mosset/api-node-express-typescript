@@ -21,13 +21,13 @@ VehiculesController.get('/:id', (req, res) => {
     const id = Number(req.params.id);
 
     if (!Number.isInteger(id)) {
-        throw new BadRequestException('Id non-valide !');
+        throw new BadRequestException('Id non-valide.');
     }
 
     const vehicule = service.findOne(id);
     
     if (!vehicule) {
-        throw new NotFoundException('Véhicule introuvable');
+        throw new NotFoundException('Véhicule introuvable.');
     }
 
     return res
@@ -51,7 +51,7 @@ VehiculesController.patch('/:id', (req, res) => {
     const id = Number(req.params.id);
 
     if(!Number.isInteger(id)) {
-        throw new BadRequestException('Id non-valide');
+        throw new BadRequestException('Id non-valide.');
     }
 
     const updatedVehicule = service.update(req.body, id);
@@ -59,7 +59,22 @@ VehiculesController.patch('/:id', (req, res) => {
     return res
     .status(200) // ok
     .json(updatedVehicule);
-})
+});
+
+
+// Suppression d'un véhicule
+VehiculesController.delete('/:id', (req, res) => {
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id)) {
+        throw new BadRequestException('Id non-valide.');
+    }
+
+    return res
+    .status(200) // ok
+    .json(service.delete(id));
+});
+
 
 // On exporte pour pouvoir utiliser notre controller dans `src/index.ts`
 export { VehiculesController };

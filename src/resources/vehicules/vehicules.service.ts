@@ -45,5 +45,10 @@ export class VehiculesService {
         this.vehicules[index] = { ...this.vehicules[index], ...vehiculeData };
 
         return this.vehicules[index];
-    }
+    };
+
+    // Suppression d'un véhicule
+    delete(id: number) {
+        this.vehicules = this.vehicules.filter(vehicule => vehicule.id !== id);
+    };
 }
