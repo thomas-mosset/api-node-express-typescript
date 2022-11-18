@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".", // explicite à TS que l'entrée du projet est le dossier courant
+      "target": "es2017", // vers quelle version de JavaScript nous allons compiler
+      "module": "CommonJS",
+      "lib": ["esnext"],
+      "moduleResolution": "node",
+      "esModuleInterop": true, // permet d'utiliser la syntaxe : import x from 'y'
+      "strict": true,
+      "strictNullChecks": true,
+      "resolveJsonModule": true,
+      "skipDefaultLibCheck": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "outDir": "./dist",
+      "strictPropertyInitialization": false,
+      "paths": { // définit les chemins personnalisés du projet
+        "~/*": ["./src/*"],
+        "~~/*": ["./*"]
+      }
+    },
+    "ts-node": { // on demande à ts-node d'utiliser nos chemins personnalisés.
+      "require": ["tsconfig-paths/register"]
+    }
+}
