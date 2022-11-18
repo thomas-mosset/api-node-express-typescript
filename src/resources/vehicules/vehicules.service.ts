@@ -30,4 +30,20 @@ export class VehiculesService {
 
         return newVehicule;
     };
+
+    // MAJ d'un véhicule
+    update(vehiculeData: Partial<Vehicule>, id: number): Vehicule | undefined {
+        const index = this.vehicules.findIndex(vehicule => vehicule.id === id);
+
+        if (index === -1) {
+            throw new NotFoundException('Véhicule non-trouvé.');
+        }
+
+        // Pas de MAJ de l'id !
+        delete vehiculeData.id;
+
+        this.vehicules[index] = { ...this.vehicules[index], ...vehiculeData };
+
+        return this.vehicules[index];
+    }
 }

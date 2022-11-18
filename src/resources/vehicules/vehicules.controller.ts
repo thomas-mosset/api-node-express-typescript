@@ -46,5 +46,20 @@ VehiculesController.post('/', (req, res) => {
 });
 
 
+// MAJ d'un véhicule
+VehiculesController.patch('/:id', (req, res) => {
+    const id = Number(req.params.id);
+
+    if(!Number.isInteger(id)) {
+        throw new BadRequestException('Id non-valide');
+    }
+
+    const updatedVehicule = service.update(req.body, id);
+
+    return res
+    .status(200) // ok
+    .json(updatedVehicule);
+})
+
 // On exporte pour pouvoir utiliser notre controller dans `src/index.ts`
 export { VehiculesController };
