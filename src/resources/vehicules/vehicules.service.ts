@@ -13,6 +13,11 @@ export class VehiculesService {
         return this.vehicules;
     };
 
+    // On trouve et retourne un seul véhicule
+    findOne(id: number): Vehicule | undefined {
+        return this.vehicules.find(vehicule => vehicule.id === id);
+    };
+
     // Création d'un véhicule
     create(vehiculeData: Omit<Vehicule, 'id'>): Vehicule {
 
@@ -24,5 +29,5 @@ export class VehiculesService {
         this.vehicules.push(newVehicule);
 
         return newVehicule;
-    }
+    };
 }

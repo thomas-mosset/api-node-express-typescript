@@ -16,6 +16,26 @@ VehiculesController.get('/', (req, res) => {
 });
 
 
+// Un seul vehicule
+VehiculesController.get('/:id', (req, res) => {
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id)) {
+        throw new BadRequestException('Id non-valide !');
+    }
+
+    const vehicule = service.findOne(id);
+    
+    if (!vehicule) {
+        throw new NotFoundException('Véhicule introuvable');
+    }
+
+    return res
+    .status(200) // ok
+    .json(vehicule);
+});
+
+
 // Création d'un véhicule
 VehiculesController.post('/', (req, res) => {
     const createdVehicule = service.create(req.body);
